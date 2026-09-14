@@ -23,7 +23,7 @@ for i in range(len(N)):
 
     T[i] = h[i] * (3/2 * y[0] + np.sum(y[1:-1]) + 3/2 * y[-1])
 
-T_t = T / np.pi * np.sqrt(2)
+T_t = T / (np.pi * np.sqrt(2))
 
 
 T_r = T_t[-1]
@@ -45,11 +45,11 @@ for i in range(len(N)):
 print(r'γ =', gamma, r'C =', C)
 
 plt.figure(figsize=(7, 4))
-plt.plot(N, T_t, 'o-', markersize=3)
+plt.plot(N[:-1], E[:-1], 'o-', markersize=3)
 #plt.axhline(1, linestyle='--')
 plt.xlabel(r'$N$')
-plt.ylabel(r'$\tilde{T}$')
-plt.title(r'Bezdimensionāla metodes konverģence')
+plt.ylabel(r'$E_N = |\tilde{T}_N - \tilde{T}_{ref}|$')
+plt.title(r'Integrēšanas metodes konverģence')
 plt.grid(True)
 #plt.legend() #pie vairākām līknēm
 plt.tight_layout()

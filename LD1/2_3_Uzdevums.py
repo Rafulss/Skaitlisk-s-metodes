@@ -33,7 +33,7 @@ for i in range(len(a0)):
     T[i] = h[i] * (3/2 * y[0] + np.sum(y[1:-1]) + 3/2 * y[-1])
 
 # lai iegūtu prasīto bezdimensionālo periodu, nav laika mērvieninības
-T_t = T / np.pi * np.sqrt(2)
+T_t = T / (np.pi * np.sqrt(2))
 
 print(" alpha0       T_tilde")
 for i in range(len(a0)):
