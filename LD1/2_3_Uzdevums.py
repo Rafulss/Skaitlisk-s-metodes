@@ -14,7 +14,7 @@ w = a0
 h = (w - q) / (N - 1)
 
 # Izveido tukšu masīvu ar tik daudz vērtībām cik ir a0 [0. 0. 0.]
-E = np.zeros(len(a0))
+T = np.zeros(len(a0))
 
 # a = alpha| 1/w(x)
 def f(a, a0):
@@ -30,19 +30,18 @@ for i in range(len(a0)):
     # h*(3/2*f2 + f3 + ... + f_(N-2) + 3/2*f_(N-1))
 
     # y[0] - pirmais elements, y[-1] - pēdējais elements
-    E[i] = h[i] * (3/2 * y[0] + np.sum(y[1:-1]) + 3/2 * y[-1])
+    T[i] = h[i] * (3/2 * y[0] + np.sum(y[1:-1]) + 3/2 * y[-1])
 
 # lai iegūtu prasīto bezdimensionālo periodu, nav laika mērvieninības
-# E = T_tilde
-E = E / np.pi * np.sqrt(2)
+T_t = T / np.pi * np.sqrt(2)
 
 print(" alpha0       T_tilde")
 for i in range(len(a0)):
     #.6f cik cipari aiz kpomata
-    print(f"{a0[i]:.6f}   {E[i]:.6f}")
+    print(f"{a0[i]:.6f}   {T_t[i]:.6f}")
 
 plt.figure(figsize=(7, 4))
-plt.plot(a0, E, 'o-')
+plt.plot(a0, T_t, 'o-')
 plt.axhline(1, linestyle='--')
 plt.xlabel(r'$\alpha_0$')
 plt.ylabel(r'$\tilde{T}$')
