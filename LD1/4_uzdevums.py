@@ -3,7 +3,7 @@ import numpy as np
 
 a0 = np.pi/3
 
-N = np.arange(100, 10100, 100)
+N = np.arange(100, 100000, 100)
 
 q = -a0
 w = a0
@@ -29,23 +29,25 @@ T_t = T / (np.pi * np.sqrt(2))
 T_r = T_t[-1]
 E = np.abs(T_t - T_r)
 
-lnN = np.log(N[:-1])
-lnE = np.log(E[:-1])
+lnN = np.log10(N[:-1])
+lnE = np.log10(E[:-1])
 
 #ar mazako kvadratu metodi pielago polinomu
-g = np.polyfit(lnN, lnE, 1)
-gamma = -g[0] # taisnes slīpuma koef.
+g = np.polyfit(lnN[0:10], lnE[0:10], 1)
+gamma = g[0] # taisnes slīpuma koef.
 C = g[1] # brīvais b
 
+lnE_fit = g[0] * lnN + g[1]
 
-print(" N       T_tilde")
-for i in range(len(N)):
-    print(f"{N[i]:.6f}   {T[i]:.6f}")
+#print(" N       T_tilde")
+#for i in range(len(N)):
+#    print(f"{N[i]:.6f}   {T[i]:.6f}")
 
 print(r'γ =', gamma, r'C =', C)
 
 plt.figure(figsize=(7, 4))
-plt.plot(N[:-1], E[:-1], 'o-', markersize=3)
+plt.plot(lnN[:-1], lnE[:-1], 'o-', markersize=3)
+plt.plot(lnN, lnE_fit, '-', linewidth=2)
 #plt.axhline(1, linestyle='--')
 plt.xlabel(r'$N$')
 plt.ylabel(r'$E_N = |\tilde{T}_N - \tilde{T}_{ref}|$')

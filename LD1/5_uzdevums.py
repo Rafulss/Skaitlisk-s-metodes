@@ -67,7 +67,8 @@ for i in range(periodu_skaits - 1):
 print(f"T_tilde = {T:.6f}")
 
 plt.figure(figsize=(9, 4.5))
-plt.plot(t, a)
+plt.plot(t, a, "-")
+plt.plot(t, a, "o", markersize=1.5)
 
 plt.axhline(0, color="black", linewidth=0.8)
 
