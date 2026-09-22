@@ -68,13 +68,13 @@ print(f"T_tilde = {T:.6f}")
 
 plt.figure(figsize=(9, 4.5))
 plt.plot(t, a, "-")
-plt.plot(t, a, "o", markersize=1.5)
+plt.plot(t, a, "o", markersize=0.01)
 
 plt.axhline(0, color="black", linewidth=0.8)
 
 plt.xlabel(r"$\tilde{t}$")
 plt.ylabel(r"$\alpha(\tilde{t})$")
-plt.title(r"Matemātiskā svārsta kustība")
+#plt.title(r"Matemātiskā svārsta kustība")
 plt.grid(True)
 plt.tight_layout()
 plt.show()

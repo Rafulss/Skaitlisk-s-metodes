@@ -73,13 +73,12 @@ print(r'γ =', gamma)
 print(r'C =', C)
 
 plt.figure(figsize=(7, 4))
-plt.plot(lnN, lnE, 'o-', markersize=4, label='Aprēķinātā kļūda')
-plt.plot(lnN, lnE_fit, '-', linewidth=2,
-         label=fr'Pielāgojums, $\gamma={gamma:.3f}$')
+plt.plot(lnN, lnE, 'o-', markersize=4)
+plt.plot(lnN, lnE_fit, '-', linewidth=2)
 
 plt.xlabel(r'$\log_{10}(N)$')
 plt.ylabel(r'$\log_{10}(E_N)$')
-plt.title(r'Gausa–Ležandra kvadratūras konverģence')
+#plt.title(r'Gausa–Ležandra kvadratūras konverģence')
 plt.grid(True)
 plt.legend()
 plt.tight_layout()

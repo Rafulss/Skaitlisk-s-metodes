@@ -44,12 +44,11 @@ for i in range(len(a0)):
     print(f"{a0[i]:.6f}   {T_t[i]:.10f}")
 
 plt.figure(figsize=(7, 4))
-plt.plot(a0, T_t, 'o-', label='Gausa–Ležandra kvadratūra')
-plt.axhline(1, linestyle='--', color='black',
-            label=r'Mazo svārstību robeža $\tilde{T}=1$')
+plt.plot(a0, T_t, 'o-') 
+plt.axhline(1, linestyle='--', color='black')
 plt.xlabel(r'$\alpha_0$')
 plt.ylabel(r'$\tilde{T}$')
-plt.title(r'Matemātiskais svārsts')
+#plt.title(r'Matemātiskais svārsts')
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
