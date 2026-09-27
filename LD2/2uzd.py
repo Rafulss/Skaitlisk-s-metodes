@@ -3,51 +3,50 @@ import numpy as np
 
 # Konstante a = (F0 * L) / (M * g) nosaka izliekumu
 a = 1
-
 N = 100
 
-q = -2 * a
-w = 2 * a
+x0 = -2 * a
+xN = 2 * a
 
-x = np.linspace(q, w, N + 1)
+# Formulas elements
+p = 0
 
-h = (w - q) / N
+# Izliekums
+h = (xN - x0) / N
 
-y = a * np.cosh(x / a) - a
+x = np.linspace(x0, xN, N + 1)
 
+def y(x):
+    return a * np.cosh(x / a) - a
 
-# 3 punktu formulas 1 un 2 atvasinājums
-y_1 = (y[2:] - y[:-2]) / (2 * h)
-y_2 = (y[2:] - 2 * y[1:-1] + y[:-2]) / h**2
+# 3 un 5 punktu prim
+def p3_yp(x, h):
+    return 1 / h * ((p - 1 / 2) * y(x - h) - 2 * p * y(x) + (p + 1 / 2) * y(x + h))
+def p5_yp(x, h):
+    return 1 / h * (((2 * p **3 - 3*p**2 - p + 1) / 12) * y(x - 2*h) - ((4*p**3 - 3*p**2 - 8*p + 4) / 6) * y(x - h) + ((2*p**3 - 5*p) / 2) * y(x) + ((2*p**3 + 3*p**2 - p - 1) / 12) * y(x + 2*h) - ((4*p**3 + 3*p**2 - 8*p - 4) / 6) * y(x + h))
 
-x3 = x[1:-1]
+# 3 un 5 punktu primprim
+def p3_ypp(x, h):
+    return (y(x + h) - 2 * y(x) + y(x - h)) / h**2
+def p5_ypp(x, h):
+    return (-y(x + 2*h) + 16 * y(x + h) - 30 * y(x) + 16 * y(x - h) - y(x - 2*h)) / (12 * h**2) 
 
-# 5 punktu formulas 1 un 2 atvasinājums
-y1 = (y[:-4]- 8 * y[1:-3] + 8 * y[3:-1] - y[4:]) / (12 * h)
-y2 = (-y[:-4] + 16 * y[1:-3] - 30 * y[2:-2] + 16 * y[3:-1] - y[4:]) / (12 * h**2)
-
-x5 = x[2:-2]
-
-j = np.sqrt(1 + (y1)**2) / a
-n = np.sqrt(1 + (y_1)**2) / a
-
-print("  x3         y_1         y_2         x5         y1         y2")
-
-for i in range(5):
-    print(f"{x3[i]:.6f}   {y_1[i]:.6f}   {y_2[i]:.6f}   {x5[i]:.6f}   {y1[i]:.6f}   {y2[i]:.6f}")
+# Funkciju pierādīšanai
+j3 = np.sqrt(1 + (p3_yp(x, h))**2) / a
+j5 = np.sqrt(1 + (p5_yp(x, h))**2) / a
 
 #grafiks
 plt.figure(figsize=(7, 4))
 # 3 punktu formula
-plt.plot(x3, y_2, 'o', markersize=3, label=r"$y''$ (3 punktu formula)")
-plt.plot(x3, n, '-', label=r"$\sqrt{1+(y')^2}/a$ (3 punktu formula)")
+plt.plot(x, p3_ypp(x, h), label="3 punktu: y''")
+plt.plot(x, j3, "x", label="3 punktu: sqrt(1+(y')²)/a")
 
 # 5 punktu formula
-plt.plot(x5, y2, 's', markersize=3, label=r"$y''$ (5 punktu formula)")
-plt.plot(x5, j, '--', label=r"$\sqrt{1+(y')^2}/a$ (5 punktu formula)")
+plt.plot(x, p5_ypp(x, h), label="5 punktu: y''")
+plt.plot(x, j5, "o", markersize=3, label="5 punktu: sqrt(1+(y')²)/a")
 
-plt.xlabel(r"${x}$")
-plt.ylabel(r"")
+plt.xlabel("x")
+plt.ylabel("y / j primprim")
 plt.title(r'')
 plt.grid(True)
 plt.legend()
