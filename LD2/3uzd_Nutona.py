@@ -16,15 +16,15 @@ def df(alpha):
 
 a = 1
 
-# Pirmais nākamais tuvinājums
+# Pirmais nākamais tuvinājums / lai saktu ciklu
 b = a - f(a) / df(a)
 
 # Precizitāte
 delta = 1e-10
 
 while abs(a - b) > delta:
-    a = b
-    b = a - f(a) / df(a)
+    b = a
+    a = b - f(b) / df(b)
 
 
 alpha = b
