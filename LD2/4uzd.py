@@ -15,14 +15,14 @@ def df(alpha):
     return -L / (2 * alpha**2) + s * np.cosh(s / (2 * alpha)) / (2 * alpha**2)
 
 # Precīzs risinājums ar Ņūtona metodi
-a = 1
-b = a - f(a) / df(a)
+b = 1
+a = b - f(b) / df(b)
 
 while abs(a - b) > delta:
-    a = b
-    b = a - f(a) / df(a)
+    b = a
+    a = b - f(b) / df(b)
 
-alpha_precizs = b
+alpha_precizs = a
 
 
 # Bisekcijas metode
@@ -41,20 +41,20 @@ while b - a > delta:
 
 
 # Ņūtona metode
-a = 1
+b = 1
 nut_kluda = []
 
-b = a - f(a) / df(a)
+a = b - f(b) / df(b)
 
 while abs(a - b) > delta:
-    nut_kluda.append(abs(b - alpha_precizs))
-    a = b
-    b = a - f(a) / df(a)
+    b = a
+    a = b - f(b) / df(b)
+    nut_kluda.append(abs(a - alpha_precizs))
 
 
 # Sekanšu metode
 a = 2
-b = 4
+b = 3
 sek_kluda = []
 
 while abs(b - a) > delta:
@@ -67,9 +67,9 @@ while abs(b - a) > delta:
 
 
 # Grafiks
-plt.plot(bis_kluda, label="Bisekcija")
-plt.plot(nut_kluda, label="Ņūtons")
-plt.plot(sek_kluda, label="Sekantes")
+plt.plot(bis_kluda, "o-", label="Bisekcija")
+plt.plot(nut_kluda, "o-", label="Ņūtons")
+plt.plot(sek_kluda, "o-", label="Sekantes")
 
 plt.yscale("log")
 plt.xlabel("Iterācija")

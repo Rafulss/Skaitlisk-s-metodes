@@ -16,8 +16,8 @@ def df(alpha):
 
 a = 1
 
-# Pirmais nākamais tuvinājums / lai saktu ciklu
-b = a - f(a) / df(a)
+# lai saktu ciklu
+b = 0
 
 # Precizitāte
 delta = 1e-10

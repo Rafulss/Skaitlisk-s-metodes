@@ -13,7 +13,7 @@ def f(alpha):
 # Izvēlētas a un b vērtības viena negatīva otra pozitīva
 # un lai nav viena daudz lielaka par otru
 a = 2
-b = 4
+b = 3
 
 # Precizitāte
 delta = 1e-10

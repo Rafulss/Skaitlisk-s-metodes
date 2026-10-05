@@ -16,6 +16,24 @@ T = np.zeros(len(N))
 def f(a, a0):
     return 1 / np.sqrt(np.cos(a) - np.cos(a0))
 
+# Precīzāka references vērtība no Gausa–Ležandra kvadratūras
+N_ref = 100
+
+x_ref, A_ref = np.polynomial.legendre.leggauss(N_ref)
+
+a_ref = 2 * np.arcsin(
+    np.sin(a0 / 2) * np.sin(np.pi * x_ref / 2)
+)
+
+da_dx_ref = (
+    np.pi * np.sin(a0 / 2) * np.cos(np.pi * x_ref / 2)
+    / np.sqrt(1 - np.sin(a0 / 2)**2 * np.sin(np.pi * x_ref / 2)**2)
+)
+
+T_ref = np.sum(A_ref * f(a_ref, a0) * da_dx_ref)
+T_ref = T_ref / (np.pi * np.sqrt(2))
+
+
 for i in range(len(N)):
     a = np.linspace(q, w, N[i])
 
@@ -26,8 +44,8 @@ for i in range(len(N)):
 T_t = T / (np.pi * np.sqrt(2))
 
 
-T_r = T_t[-1]
-E = np.abs(T_t - T_r)
+#T_r = T_t[-1]
+E = np.abs(T_t - T_ref)
 
 lnN = np.log10(N[:-1])
 lnE = np.log10(E[:-1])
@@ -49,8 +67,8 @@ plt.figure(figsize=(7, 4))
 plt.plot(lnN[:-1], lnE[:-1], 'o-', markersize=3)
 plt.plot(lnN, lnE_fit, '-', linewidth=2)
 #plt.axhline(1, linestyle='--')
-plt.xlabel(r'$N$')
-plt.ylabel(r'$E_N = |\tilde{T}_N - \tilde{T}_{ref}|$')
+plt.xlabel(r'$\log_{10}(N)$')
+plt.ylabel(r'$\log_{10}(E_N) = |\tilde{T}_N - \tilde{T}_{ref}|$')
 plt.title(r'Integrēšanas metodes konverģence')
 plt.grid(True)
 #plt.legend() #pie vairākām līknēm
