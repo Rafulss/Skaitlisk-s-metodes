@@ -1,3 +1,6 @@
+
+# grafiks starpībai
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -49,6 +52,42 @@ plt.xlabel("x")
 plt.ylabel("y / j primprim")
 plt.title(r'')
 plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+
+ypp3 = p3_ypp(x, h)
+ypp5 = p5_ypp(x, h)
+
+# 1. un 2. līnija:
+# Vai katrā metodē vienādojuma kreisā puse y'' sakrīt ar labo pusi j?
+starpiba_3 = np.abs(ypp3 - j3)
+starpiba_5 = np.abs(ypp5 - j5)
+
+# 3. un 4. līnija:
+# Kā atšķiras 3 un 5 punktu formulas savā starpā?
+starpiba_ypp = np.abs(ypp3 - ypp5)
+starpiba_j = np.abs(j3 - j5)
+
+plt.figure(figsize=(9, 5))
+
+plt.semilogy(x, starpiba_3,
+             label=r"3 punktu: $|y'' - \sqrt{1+(y')^2}/a|$")
+
+plt.semilogy(x, starpiba_5,
+             label=r"5 punktu: $|y'' - \sqrt{1+(y')^2}/a|$")
+
+plt.semilogy(x, starpiba_ypp,
+             label=r"Starpība starp 3 un 5 punktu $y''$")
+
+plt.semilogy(x, starpiba_j,
+             label=r"Starpība starp 3 un 5 punktu $\sqrt{1+(y')^2}/a$")
+
+plt.xlabel("x")
+plt.ylabel("Absolūtā starpība")
+#plt.title("Starpības starp 3 un 5 punktu metodēm")
+plt.grid()
 plt.legend()
 plt.tight_layout()
 plt.show()
