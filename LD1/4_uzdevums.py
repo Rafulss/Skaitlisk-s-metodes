@@ -64,14 +64,14 @@ lnE_fit = g[0] * lnN + g[1]
 print(r'γ =', gamma, r'C =', C)
 
 plt.figure(figsize=(7, 4))
-plt.plot(lnN[:-1], lnE[:-1], 'o-', markersize=3)
-plt.plot(lnN, lnE_fit, '-', linewidth=2)
+plt.plot(lnN[:-1], lnE[:-1], 'o-', markersize=3, label='Aprēķinātie punkti')
+plt.plot(lnN, lnE_fit, '-', linewidth=2, label=f'Fitētā taisne')
 #plt.axhline(1, linestyle='--')
 plt.xlabel(r'$\log_{10}(N)$')
-plt.ylabel(r'$\log_{10}(E_N) = |\tilde{T}_N - \tilde{T}_{ref}|$')
-plt.title(r'Integrēšanas metodes konverģence')
+plt.ylabel(r'$\log_{10}(E_N)$')
+#plt.title(r'Integrēšanas metodes konverģence')
 plt.grid(True)
-#plt.legend() #pie vairākām līknēm
+plt.legend() #pie vairākām līknēm
 plt.tight_layout()
 #plt.savefig('', dpi=300, bbox_inches='tight')
 plt.show()
