@@ -1,0 +1,212 @@
+
+\section*{3. uzdevums}
+
+Sākuma tuvinājumam izvēlamies:
+\[
+\theta=0{,}5\ \mathrm{rad},
+\qquad
+A_{\pm1}^{(0)}=\frac{\theta}{2}=0{,}25,
+\qquad
+A_{n\neq\pm1}^{(0)}=0.
+\]
+Ievietojot šos koeficientus Furjē summā:
+\[
+\alpha^{(0)}(\tau)
+=0{,}25e^{-i\Omega\tau}+0{,}25e^{i\Omega\tau}
+=0{,}5\cos(\Omega\tau),
+\qquad
+\Omega=\frac{1}{1{,}3}.
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{art/3uzd.png}
+    \caption{Sākuma tuvinājuma $\alpha^{(0)}(\tau)$ reālā
+    un imaginārā daļa viena perioda laikā.}
+    \label{fig:3uzd}
+\end{figure}
+
+Grafikā redzams, ka sākuma tuvinājums ir kosinusa funkcija
+ar amplitūdu $0{,}5\ \mathrm{rad}$.
+Pie $\tau=0$ svārsts atrodas maksimālajā novirzē:
+\[
+\alpha^{(0)}(0)=0{,}5,
+\qquad
+\left.\frac{d\alpha^{(0)}}{d\tau}\right|_{\tau=0}=0.
+\]
+Tātad sākuma tuvinājums atbilst palaišanai bez sākuma ātruma.
+Pie $\tau=\widetilde{T}/2$ novirze ir
+$-0{,}5\ \mathrm{rad}$, bet pēc pilna perioda
+$\widetilde{T}=2{,}6\pi$ funkcija atgriežas sākuma vērtībā.
+
+Imaginārā daļa ir nulle, jo koeficienti
+$A_{-1}^{(0)}=A_1^{(0)}$ ir reāli un eksponentu
+imaginārās daļas savstarpēji atceļas.
+Šis vēl ir tikai sākuma tuvinājums, nevis nelineārā
+kustības vienādojuma gala atrisinājums.
+
+\newpage
+\section*{4. uzdevums}
+
+Vispirms aprēķinām sākuma tuvinājuma sinusu:
+\[
+\sin\bigl(\alpha^{(0)}(\tau)\bigr)
+=\sin\bigl(0{,}5\cos(\Omega\tau)\bigr).
+\]
+Izmantojot Furjē transformāciju, atrodam koeficientus
+$B_n^{(0)}$, bet no tiem aprēķinām nākamo tuvinājumu:
+\[
+A_n^{(1)}=\frac{B_n^{(0)}}{\Omega^2n^2},
+\qquad n\neq0.
+\]
+Pie $n=0$ šo formulu nevar izmantot, jo tā satur dalīšanu
+ar nulli. Svārstībām ap līdzsvara stāvokli izvēlamies
+$A_0=0$; arī $B_0$ šajā aprēķinā ir nulle skaitliskās
+precizitātes robežās.
+
+Aprēķinos izmantojam $M=4096$ vienmērīgi izvietotus
+laika punktus vienā periodā. Tabulā parādīti pirmās
+iterācijas un gala rezultāta koeficienti.
+Pozitīvajiem un negatīvajiem indeksiem koeficienti
+sakrīt skaitliskās precizitātes robežās.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{c|c|c|c}
+        $n$ & $B_n^{(0)}$ & $A_n^{(1)}$ & $A_n^{(k)}$ \\
+        \hline
+$0$ & $0$ & $0$ & $0$ \\
+$\pm 1$ & $0{,}2422684577$ & $0{,}4094336935$ & $0{,}9894564073$ \\
+$\pm 2$ & $0$ & $0$ & $0$ \\
+$\pm 3$ & $-0{,}002563729995$ & $-0{,}0004814115212$ & $-0{,}02471884678$ \\
+$\pm 4$ & $0$ & $0$ & $0$ \\
+$\pm 5$ & $8{,}053627241\cdot 10^{-6}$ & $5{,}444252015\cdot 10^{-7}$ & $0{,}001039490636$ \\
+$\pm 6$ & $0$ & $0$ & $0$ \\
+$\pm 7$ & $-1{,}201586733\cdot 10^{-8}$ & $-4{,}144248119\cdot 10^{-10}$ & $-5{,}202157798\cdot 10^{-5}$ \\
+$\pm 8$ & $0$ & $0$ & $0$ \\
+$\pm 9$ & $1{,}044677144\cdot 10^{-11}$ & $2{,}179635029\cdot 10^{-13}$ & $2{,}833728062\cdot 10^{-6}$ \\
+    \end{tabular}
+    \caption{Sākuma tuvinājuma sinusa Furjē koeficienti,
+    nākamā tuvinājuma koeficienti un koeficienti pēc konverģences.}
+\end{table}
+
+Atkārtojam Furjē transformāciju un koeficientu
+pārrēķināšanu, līdz:
+\[
+\max_n\left|A_n^{(k+1)}-A_n^{(k)}\right|<10^{-13}.
+\]
+Izmantojot $N=9$ jeb indeksus $n=-N,\ldots,N$,
+konverģence sasniegta pēc 24 iterācijām.
+Pēdējo divu tuvinājumu lielākā koeficientu starpība:
+\[
+\Delta A_{\max}=4{,}463097819\cdot 10^{-14}.
+\]
+Šī starpība raksturo iterāciju konverģenci.
+Harmoniku skaita ietekmi uz amplitūdas precizitāti
+pārbaudām atsevišķi.
+
+Vislielāko ieguldījumu dod pamat­harmonika
+$n=\pm1$. Nākamo lielāko ieguldījumu dod
+$n=\pm3$, bet augstāko nepāra harmoniku
+koeficienti ir arvien mazāki.
+Harmonikas $n$ un $-n$ kopā veido vienu
+reālu kosinusa locekli:
+\[
+A_ne^{in\Omega\tau}+A_{-n}e^{-in\Omega\tau}
+=2A_n\cos(n\Omega\tau).
+\]
+Tādēļ iegūto atrisinājumu var pierakstīt:
+\[
+\begin{aligned}
+\alpha(\tau)\approx {} &1{,}978912815\cos(\Omega\tau) \\
+&- 0{,}04943769355\cos(3\Omega\tau) \\
+&+ 0{,}002078981273\cos(5\Omega\tau) \\
+&- 0{,}000104043156\cos(7\Omega\tau) \\
+&+ 5{,}667456125\cdot 10^{-6}\cos(9\Omega\tau)
+\end{aligned}
+\]
+
+Pāra harmonikas $n=\pm2,\pm4,\ldots$ ieguldījumu
+nedod; to skaitliski aprēķinātās vērtības ir nulle
+noapaļošanas precizitātes robežās.
+Tas izriet no svārstību simetrijas:
+\[
+\alpha\left(\tau+\frac{\widetilde{T}}{2}\right)
+=-\alpha(\tau).
+\]
+Pēc pusperioda novirze maina zīmi, tāpēc Furjē
+izvirzījumā paliek tikai nepāra harmonikas.
+Arī pastāvīgais loceklis $A_0$ ir nulle.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{art/4uzd.png}
+    \caption{Aprēķinātā $\alpha(\tau)$ reālā un
+    imaginārā daļa pēc koeficientu konverģences.}
+    \label{fig:4uzd}
+\end{figure}
+
+Grafikā redzamas periodiskas svārstības ap līdzsvara
+stāvokli $\alpha=0$.
+Atšķirībā no sākuma tuvinājuma gala funkcija
+nav tikai viens kosinuss, jo tai ir arī augstāko
+nepāra harmoniku ieguldījums.
+Imaginārā daļa ir nulle skaitliskās precizitātes
+robežās, tāpēc iegūtais atrisinājums ir reāls.
+
+Svārstību amplitūdu nosakām pozitīvajā galējā
+stāvoklī pie $\tau=0$:
+\[
+\theta_N=\alpha(0)=\sum_{n=-N}^{N}A_n
+=1{,}931455727\ \mathrm{rad}.
+\]
+Sākumā izvēlētie $0{,}5\ \mathrm{rad}$ ir tikai
+iterāciju sākuma tuvinājuma amplitūda.
+Aprēķinā ir dots periods, tāpēc gala amplitūdu
+nosaka prasība iegūt svārstības ar
+$\widetilde{T}=1{,}3\cdot2\pi$.
+
+Lai pārbaudītu, cik harmoniku vajag sešiem
+zīmīgajiem cipariem, atkārtojam aprēķinu pie
+dažādām $N$ vērtībām.
+Salīdzinājumam izmantojam rezultātu ar $N=40$.
+Palielinot $N$ no 30 līdz 40, amplitūdas izmaiņa ir:
+\[
+|\theta_{40}-\theta_{30}|=0\ \mathrm{rad}.
+\]
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+        $N$ & $\theta_N$, rad & $|\theta_N-\theta_{40}|$, rad \\
+        \hline
+$1$ & $1{,}957384118$ & $0{,}02592869588$ \\
+$2$ & $1{,}957384118$ & $0{,}02592869588$ \\
+$3$ & $1{,}929434949$ & $0{,}002020472719$ \\
+$4$ & $1{,}929434949$ & $0{,}002020472719$ \\
+$5$ & $1{,}931551553$ & $9{,}613107654\cdot 10^{-5}$ \\
+$6$ & $1{,}931551553$ & $9{,}613107654\cdot 10^{-5}$ \\
+$7$ & $1{,}931450105$ & $5{,}316799437\cdot 10^{-6}$ \\
+$8$ & $1{,}931450105$ & $5{,}316799437\cdot 10^{-6}$ \\
+$9$ & $1{,}931455727$ & $3{,}049804407\cdot 10^{-7}$ \\
+$10$ & $1{,}931455727$ & $3{,}049804405\cdot 10^{-7}$ \\
+    \end{tabular}
+    \caption{Aprēķinātās amplitūdas salīdzinājums pie
+    dažāda lielākā harmonikas indeksa $N$.}
+\end{table}
+
+Šajā salīdzinājumā pirmais $N$, pie kura amplitūdas
+noapaļojums līdz sešiem zīmīgajiem cipariem sakrīt
+ar salīdzinājuma rezultātu un absolūtā starpība ir
+mazāka par pusi no pēdējā cipara vienības, ir:
+\[
+N=9,
+\qquad
+\theta\approx1{,}93146\ \mathrm{rad}.
+\]
+Tātad šajā skaitliskajā pārbaudē pietiek Furjē
+summu paturēt līdz $|n|=9$.
+Jāņem vērā, ka pāra harmoniku koeficienti ir nulle,
+tāpēc faktisko ieguldījumu dod tikai nepāra harmonikas.
+\newpage
